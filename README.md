@@ -1,6 +1,5 @@
 # beginner-de-project
 
-## Description
 This repository serves as my learning material for developing Data Engineering (DE) skills, focusing on Airflow, Docker, AWS cloud computing, and data pipeline best practices.
 
 Credit goes to [@josephmachado](https://github.com/josephmachado) for initially setting up this project. You can find his repository [here](https://github.com/josephmachado/beginner_de_project).
