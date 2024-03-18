@@ -32,6 +32,13 @@ Encountered issues with Airflow connectivity after running `make infra-up`.
 
 5. **S3 ACL Error Resolution:**
     - Faced S3 ACL errors during deployment.
-    - Allowed block public access for AWS account.  
-    - Followed steps outlined [here](https://medium.com/terraform-aws-tips/aws-disabled-s3-acl-88d8976df26e) to resolve the issue.
-    - Allowed S3 bucket ACLs public access block in Terraform to solve this error `Error: error creating S3 bucket ACL for s3-bucket-name-1234: AccessDenied: Access Denied`
+    - To resolve the issue, first, enabled block public access for the AWS account. 
+      ![S3 block public access](https://github.com/JirapatJean/beginner_de_project/assets/73807990/fa56157e-96bd-4507-8ff9-3d90d9101761)
+      ![S3 block public access](https://github.com/JirapatJean/beginner_de_project/assets/73807990/d4d8e58f-96d6-45f3-af50-0a5fdca3180d)
+    - Then, enabled ACLs block access in newly created S3 in [main.tf](https://github.com/JirapatJean/beginner_de_project/blob/e6fa00e23a6e75400d76b09bcf5e8258a4bd2cbc/terraform/main.tf#L34-L41)
+    - Followed the steps outlined [here](https://medium.com/terraform-aws-tips/aws-disabled-s3-acl-88d8976df26e) to resolve the issue.
+    - Allowed S3 bucket ACLs public access block in Terraform to resolve this error: 
+      ```
+      Error: error creating S3 bucket ACL for s3-bucket-name-1234: AccessDenied: Access Denied
+      ```
+
