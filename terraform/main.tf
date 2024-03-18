@@ -15,7 +15,7 @@ terraform {
 
 provider "aws" {
   region  = var.aws_region
-  profile = "default"
+  profile = "admin-1"
 }
 
 # Create our S3 bucket (Datalake)
@@ -24,7 +24,25 @@ resource "aws_s3_bucket" "sde-data-lake" {
   force_destroy = true
 }
 
+resource "aws_s3_bucket_ownership_controls" "sde-data-lake" {
+  bucket = aws_s3_bucket.sde-data-lake.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "sde-data-lake" {
+  bucket = aws_s3_bucket.sde-data-lake.id
+
+  block_public_acls = false
+  block_public_policy = true
+  ignore_public_acls = false
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_acl" "sde-data-lake-acl" {
+  depends_on = [ aws_s3_bucket_ownership_controls.sde-data-lake ]
+
   bucket = aws_s3_bucket.sde-data-lake.id
   acl    = "public-read-write"
 }

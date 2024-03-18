@@ -23,13 +23,15 @@ Encountered issues with Airflow connectivity after running `make infra-up`.
     - Configured AWS SSO as a separate profile instead of using the default one.
     - Encountered issues with Terraform due to this setup.
     - After setting up SSO, it's necessary to change the profile in `main.tf` to your SSO name.
-    - Also, commented out sections 'a' and 'b' in `~/.aws/config`.
+    - Also, commented out sections 'sso_session = 'name'' and '[sso-session name]' in `~/.aws/config`.
     - Refer to [this issue](https://github.com/hashicorp/terraform/issues/32448#issuecomment-1505575049) for more details.
 
 4. **EMR Default Role Setup:**
     - Encountered a missing default role issue with EMR.
-    - Resolved it using the command line: `aws emr create-default-roles` in the AWS console.
+    - Resolved it using the command line: `aws emr create-default-roles` in the AWS console cloudshell.
 
 5. **S3 ACL Error Resolution:**
     - Faced S3 ACL errors during deployment.
+    - Allowed block public access for AWS account.  
     - Followed steps outlined [here](https://medium.com/terraform-aws-tips/aws-disabled-s3-acl-88d8976df26e) to resolve the issue.
+    - Allowed S3 bucket ACLs public access block in Terraform to solve this error `Error: error creating S3 bucket ACL for s3-bucket-name-1234: AccessDenied: Access Denied`

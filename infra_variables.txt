@@ -1,4 +1,4 @@
-AWS_REGION="us-east-1"
+AWS_REGION="ap-southeast-1"
 AWS_EC2_INSTANCE="t2.large"
 EC2_IAM_ROLE="sde-ec2-s3-emr-rs-access"
 EC2_IMAGE_ID="ami-09d56f8956ab235b3"
